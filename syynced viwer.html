@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Schedule Viewer</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #f5f5f5;
+            color: #4b3f34;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #4b3f34;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #d4a373;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #d4a373;
+            color: #fff;
+        }
+        tr:nth-child(even) {
+            background-color: #f5e4d7;
+        }
+        tr:nth-child(odd) {
+            background-color: #fae1dc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Schedule Viewer</h1>
+        <table id="schedule-table">
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Session</th>
+                    <th>Start Time</th>
+                    <th>End Time</th>
+                    <th>Music Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Schedule will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function convertToUserTimeZone(istTime) {
+            let [hour, minute] = istTime.split(':').map(Number);
+            let istDateTime = new Date();
+            istDateTime.setHours(hour);
+            istDateTime.setMinutes(minute);
+            istDateTime.setSeconds(0);
+            
+            let userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            let options = { timeZone: userTimeZone, hour: '2-digit', minute: '2-digit', hour12: false };
+
+            return istDateTime.toLocaleTimeString('en-US', options);
+        }
+
+        window.onload = function() {
+            let schedule = JSON.parse(localStorage.getItem('schedule')) || [];
+            let table = document.getElementById('schedule-table').getElementsByTagName('tbody')[0];
+            table.innerHTML = ''; // Clear existing table rows
+            schedule.forEach(event => {
+                let newRow = table.insertRow();
+                let dayCell = newRow.insertCell(0);
+                let sessionTypeCell = newRow.insertCell(1);
+                let startTimeCell = newRow.insertCell(2);
+                let endTimeCell = newRow.insertCell(3);
+                let musicNameCell = newRow.insertCell(4);
+                
+                dayCell.innerText = event.day;
+                sessionTypeCell.innerText = event.sessionType;
+                startTimeCell.innerText = convertToUserTimeZone(event.startTime.split(' ')[0]);
+                endTimeCell.innerText = convertToUserTimeZone(event.endTime.split(' ')[0]);
+                musicNameCell.innerText = event.musicName;
+            });
+        }
+    </script>
+</body>
+</html>
