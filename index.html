@@ -80,25 +80,33 @@
             return istDateTime.toLocaleTimeString('en-US', options);
         }
 
-        window.onload = function() {
-            let schedule = JSON.parse(localStorage.getItem('schedule')) || [];
-            let table = document.getElementById('schedule-table').getElementsByTagName('tbody')[0];
-            table.innerHTML = ''; // Clear existing table rows
-            schedule.forEach(event => {
-                let newRow = table.insertRow();
-                let dayCell = newRow.insertCell(0);
-                let sessionTypeCell = newRow.insertCell(1);
-                let startTimeCell = newRow.insertCell(2);
-                let endTimeCell = newRow.insertCell(3);
-                let musicNameCell = newRow.insertCell(4);
-                
-                dayCell.innerText = event.day;
-                sessionTypeCell.innerText = event.sessionType;
-                startTimeCell.innerText = convertToUserTimeZone(event.startTime.split(' ')[0]);
-                endTimeCell.innerText = convertToUserTimeZone(event.endTime.split(' ')[0]);
-                musicNameCell.innerText = event.musicName;
-            });
+        async function loadSchedule() {
+            const url = 'https://raw.githubusercontent.com/parax-lab/Parasolaze-Live-Weekly-Study-Schedule/main/schedule.json';
+
+            fetch(url)
+                .then(response => response.json())
+                .then(schedule => {
+                    let table = document.getElementById('schedule-table').getElementsByTagName('tbody')[0];
+                    table.innerHTML = ''; // Clear existing table rows
+                    schedule.forEach(event => {
+                        let newRow = table.insertRow();
+                        let dayCell = newRow.insertCell(0);
+                        let sessionTypeCell = newRow.insertCell(1);
+                        let startTimeCell = newRow.insertCell(2);
+                        let endTimeCell = newRow.insertCell(3);
+                        let musicNameCell = newRow.insertCell(4);
+                        
+                        dayCell.innerText = event.day;
+                        sessionTypeCell.innerText = event.sessionType;
+                        startTimeCell.innerText = convertToUserTimeZone(event.startTime);
+                        endTimeCell.innerText = convertToUserTimeZone(event.endTime);
+                        musicNameCell.innerText = event.musicName;
+                    });
+                })
+                .catch(error => console.error('Error loading schedule:', error));
         }
+
+        window.onload = loadSchedule;
     </script>
 </body>
 </html>
