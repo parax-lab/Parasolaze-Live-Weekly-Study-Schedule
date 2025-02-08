@@ -1,0 +1,100 @@
+[
+    {
+        "day": "Monday",
+        "sessionType": "Regular",
+        "startTime": "09:00",
+        "endTime": "18:00",
+        "musicName": "Rain"
+    },
+    {
+        "day": "Monday",
+        "sessionType": "Night",
+        "startTime": "20:00",
+        "endTime": "02:00",
+        "musicName": "Rain"
+    },
+    {
+        "day": "Tuesday",
+        "sessionType": "Regular",
+        "startTime": "09:00",
+        "endTime": "18:00",
+        "musicName": "Hiphop"
+    },
+    {
+        "day": "Tuesday",
+        "sessionType": "Night",
+        "startTime": "20:00",
+        "endTime": "02:00",
+        "musicName": "Hiphop"
+    },
+    {
+        "day": "Wednesday",
+        "sessionType": "Regular",
+        "startTime": "09:00",
+        "endTime": "18:00",
+        "musicName": "Calm Piano"
+    },
+    {
+        "day": "Wednesday",
+        "sessionType": "Night",
+        "startTime": "20:00",
+        "endTime": "02:00",
+        "musicName": "Calm Piano"
+    },
+    {
+        "day": "Thursday",
+        "sessionType": "Regular",
+        "startTime": "09:00",
+        "endTime": "18:00",
+        "musicName": "Ambience"
+    },
+    {
+        "day": "Thursday",
+        "sessionType": "Night",
+        "startTime": "20:00",
+        "endTime": "02:00",
+        "musicName": "Ambience"
+    },
+    {
+        "day": "Friday",
+        "sessionType": "Regular",
+        "startTime": "09:00",
+        "endTime": "18:00",
+        "musicName": "Firewood"
+    },
+    {
+        "day": "Friday",
+        "sessionType": "Night",
+        "startTime": "20:00",
+        "endTime": "02:00",
+        "musicName": "Firewood"
+    },
+    {
+        "day": "Saturday",
+        "sessionType": "Regular",
+        "startTime": "09:00",
+        "endTime": "18:00",
+        "musicName": "Lofi"
+    },
+    {
+        "day": "Saturday",
+        "sessionType": "Night",
+        "startTime": "20:00",
+        "endTime": "02:00",
+        "musicName": "Lofi"
+    },
+    {
+        "day": "Sunday",
+        "sessionType": "Regular",
+        "startTime": "09:00",
+        "endTime": "18:00",
+        "musicName": "Silent"
+    },
+    {
+        "day": "Sunday",
+        "sessionType": "Night",
+        "startTime": "20:00",
+        "endTime": "02:00",
+        "musicName": "Silent"
+    }
+]
